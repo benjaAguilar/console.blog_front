@@ -13,6 +13,64 @@ const content = await convertToMarkdown(md2);
 ---
 
 <Layout>
-    <h1>{post.post.title}</h1>
-    <div set:html={content}></div>
+    <div class="flex flex-col items-center">
+        <img src={post.post.thumbnailUrl} alt="" class="aspect-video">
+        <div class="postContainer">
+            <h1>{post.post.title}</h1>
+            <hr>
+            <div set:html={content} id="content"></div>
+        </div>
+    </div>
 </Layout>
+
+<style>
+    h1{
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    img{
+        mask-image: linear-gradient(black 20%, transparent);
+        filter: brightness(0.8) blur(1px);
+        position: absolute;
+    }
+    hr{
+        margin-bottom: 1rem;
+    }
+    .postContainer{
+        background-color: #fafafa;
+        border-radius: 1rem;
+        max-width: 80%;
+        margin-top: 20%;
+        padding: 2rem;
+        z-index: 3;
+    }
+    #content{
+        h2, h3, h4, pre, p, hr{
+            margin-bottom: 1rem;
+        }
+        h2{
+            font-size: 2rem;
+        }
+        h3{
+            font-size: 1.5rem;
+        }
+        h4{
+            font-size: 1.2rem;
+        }
+        pre {
+            background-color: #2d2d2d; 
+            color: #f8f8f2;           
+            padding: 16px;           
+            border-radius: 8px;       
+            overflow-x: auto;         
+            font-family: 'Courier New', Courier, monospace; 
+            font-size: 14px;         
+            line-height: 1.5;         
+        }
+        code {
+            color: #66d9ef;         
+            background: none;       
+            font-size: 1em;          
+        }
+    }
+</style>
