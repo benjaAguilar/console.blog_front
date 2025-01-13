@@ -16,6 +16,19 @@ const content = await convertToMarkdown(md2);
     <div class="flex flex-col items-center">
         <img src={post.post.thumbnailUrl} alt="" class="aspect-video">
         <div class="postContainer">
+            <div class="flex gap-4">
+                <p>likes: {post.post.userLikes.length}</p>
+                <p>comments: {post.post.comments.length}</p>
+                <p>readtime: {post.post.readtimeMin} mins</p>
+                <p>views: {post.post.views}</p>
+            {
+                post.post.categories.map((category: { category: { name: unknown; }; }) => {
+                    if(category){
+                        return <p>{category.category.name}</p>
+                    }
+                })
+            }
+            </div>
             <h1>{post.post.title}</h1>
             <hr>
             <div set:html={content} id="content"></div>
