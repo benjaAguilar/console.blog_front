@@ -48,6 +48,7 @@ export function RegisterForm() {
 
         <input
           type="submit"
+          value="Sign Up"
           onClick={(e) => {
             fetchData(e);
           }}
