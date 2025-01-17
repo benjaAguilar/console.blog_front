@@ -1,3 +1,5 @@
+import { Stats } from "./Stats";
+
 function PostCard({
   id,
   title,
@@ -27,11 +29,31 @@ function PostCard({
           return <p key={category.categoryId}>{category.categoryId}</p>;
         })}
       </div>
-      <div className="flex gap-3 px-2">
-        <p>{views}</p>
-        <p>{likes}</p>
-        <p>{comments}</p>
-        <p>{readtime} mins</p>
+      <div className="flex flex-wrap gap-3 px-2">
+        <Stats
+          icon={"/icons/views.svg"}
+          alt={"Views icon"}
+          data={views}
+          name={"visitas"}
+        />
+        <Stats
+          icon={"/icons/like.svg"}
+          alt={"Likes icon"}
+          data={likes}
+          name={"likes"}
+        />
+        <Stats
+          icon={"/icons/comment.svg"}
+          alt={"Comments icon"}
+          data={comments}
+          name={"comentarios"}
+        />
+        <Stats
+          icon={"/icons/readtime.svg"}
+          alt={"Readtime icon"}
+          data={readtime}
+          name={"min de lectura"}
+        />
       </div>
     </a>
   );
