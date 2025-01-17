@@ -2,6 +2,7 @@
 import { convertToMarkdown } from '../../utils/convertToMarkdown.js'
 import Layout from "../../layouts/Layout.astro";
 import { CommentSection } from '../../components/common/comments/CommentSection';
+import { Stats } from '../../components/common/Stats';
 
 const { id } = Astro.params;
 const response = await fetch(`http://localhost:3000/api/posts/${id}`);
@@ -18,10 +19,30 @@ const content = await convertToMarkdown(md2);
         <img src={post.post.thumbnailUrl} alt="" class="aspect-video">
         <div class="postContainer">
             <div class="flex gap-4">
-                <p>likes: {post.post.userLikes.length}</p>
-                <p>comments: {post.post.comments.length}</p>
-                <p>readtime: {post.post.readtimeMin} mins</p>
-                <p>views: {post.post.views}</p>
+                <Stats
+                icon={"/icons/views.svg"}
+                alt={"Views icon"}
+                data={post.post.views}
+                name={"visitas"}
+              />
+              <Stats
+                icon={"/icons/like.svg"}
+                alt={"Likes icon"}
+                data={post.post.userLikes.length}
+                name={"likes"}
+              />
+              <Stats
+                icon={"/icons/comment.svg"}
+                alt={"Comments icon"}
+                data={post.post.comments.length}
+                name={"comentarios"}
+              />
+              <Stats
+                icon={"/icons/readtime.svg"}
+                alt={"Readtime icon"}
+                data={post.post.readtimeMin}
+                name={"min de lectura"}
+              />
             {
                 post.post.categories.map((category: { category: { name: unknown; }; }) => {
                     if(category){
