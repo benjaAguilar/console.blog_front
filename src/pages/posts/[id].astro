@@ -1,6 +1,7 @@
 ---
 import { convertToMarkdown } from '../../utils/convertToMarkdown.js'
 import Layout from "../../layouts/Layout.astro";
+import { CommentSection } from '../../components/common/comments/CommentSection';
 
 const { id } = Astro.params;
 const response = await fetch(`http://localhost:3000/api/posts/${id}`);
@@ -33,19 +34,7 @@ const content = await convertToMarkdown(md2);
             <hr>
             <div set:html={content} id="content"></div>
             <h3>Comments</h3>
-            {
-                post.post.comments.map((comment: { content: unknown; }) => {
-                    if(comment){
-                        return(
-                            <hr>
-                            <div>
-                                <p>{comment.content}</p>
-                            </div>
-                            <hr>
-                        )
-                    }
-                })
-            }
+            <CommentSection postId={id} client:load />
         </div>
     </div>
 </Layout>
