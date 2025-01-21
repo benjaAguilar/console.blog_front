@@ -3,8 +3,10 @@ import { convertToMarkdown } from '../../utils/convertToMarkdown.js'
 import Layout from "../../layouts/Layout.astro";
 import { CommentSection } from '../../components/common/comments/CommentSection';
 import { Stats } from '../../components/common/Stats';
+import { LikeButton } from '../../components/common/LikeButton';
 
 const { id } = Astro.params;
+
 const response = await fetch(`http://localhost:3000/api/posts/${id}`);
 const post = await response.json();
 
@@ -25,12 +27,11 @@ const content = await convertToMarkdown(md2);
                 data={post.post.views}
                 name={"visitas"}
               />
-              <Stats
-                icon={"/icons/like.svg"}
-                alt={"Likes icon"}
-                data={post.post.userLikes.length}
-                name={"likes"}
-              />
+               <LikeButton 
+                usersLikes={post.post.userLikes}
+                postId={post.post.id}
+                client:load
+                />
               <Stats
                 icon={"/icons/comment.svg"}
                 alt={"Comments icon"}
