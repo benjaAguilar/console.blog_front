@@ -26,3 +26,39 @@ export async function getAuthUser(): Promise<User> {
     };
   }
 }
+
+export async function registerUser(data: any) {
+  try {
+    const response = await fetch(`${server}/api/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: data,
+    });
+
+    const registerData = await response.json();
+
+    return registerData;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function loginUser(data: any) {
+  try {
+    const response = await fetch(`${server}/api/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: data,
+    });
+
+    const loginData = await response.json();
+
+    return loginData;
+  } catch (error) {
+    return error;
+  }
+}
