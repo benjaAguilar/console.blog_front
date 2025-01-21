@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostCard from "./PostsCard";
+import { getAllPosts } from "../../utils/postsApi";
 
 export function PostsShowcase() {
   const [posts, setPosts] = useState();
@@ -7,8 +8,8 @@ export function PostsShowcase() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/api/posts");
-      const postsData = await response.json();
+      const postsData = await getAllPosts();
+
       if (!postsData.success) {
         setErrorMessage(postsData.message);
         return;
@@ -16,6 +17,7 @@ export function PostsShowcase() {
 
       setPosts(postsData.posts);
     }
+
     fetchData();
   }, []);
   console.log(errorMessage);

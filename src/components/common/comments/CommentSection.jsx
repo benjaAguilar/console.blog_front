@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { GetComments } from "./GetComments";
+import { createComment, getPostComments } from "../../../utils/commentsApi";
 
 export function CommentSection({ postId }) {
   const [reRender, setReRender] = useState(0);
@@ -8,50 +9,36 @@ export function CommentSection({ postId }) {
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
-    function getComments() {
-      fetch(`${server}/api/posts/${postId}/comments`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (!data.success) {
-            return console.log(data.message);
-          }
+    async function getComments() {
+      const data = await getPostComments(postId);
 
-          setComments(data.comments);
-        });
+      if (!data.success) {
+        console.log(data.message);
+        return;
+      }
+
+      setComments(data.comments);
     }
 
     getComments();
   }, [reRender]);
 
-  const server = import.meta.env.PUBLIC_SERVER;
-
-  function fetchComment(e) {
+  async function fetchComment(e) {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
     const data = new URLSearchParams(formData);
 
-    const token = localStorage.getItem("token");
+    const commented = await createComment(postId, data);
 
-    fetch(`${server}/api/posts/${postId}/comments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: token,
-      },
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (!data.success) {
-          return console.log(data.message);
-        }
+    if (!commented.success) {
+      return console.log(commented.message);
+    }
 
-        console.log("commented!");
-        inputRef.current.value = "";
-        setReRender((prev) => prev + 1);
-      });
+    console.log(commented.message);
+
+    inputRef.current.value = "";
+    setReRender((prev) => prev + 1);
   }
 
   return (

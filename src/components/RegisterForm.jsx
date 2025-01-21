@@ -1,32 +1,24 @@
 import { useRef, useState } from "react";
+import { registerUser } from "../utils/userApi";
 
 export function RegisterForm() {
   const [errorMessages, setErrorMessages] = useState(null);
 
   const formRef = useRef();
-  const server = import.meta.env.PUBLIC_SERVER;
 
-  function fetchData(e) {
+  async function fetchData(e) {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
     const data = new URLSearchParams(formData);
 
-    fetch(`${server}/api/users/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.success) {
-          return setErrorMessages(data.validationErrors);
-        }
+    const registerData = await registerUser(data);
 
-        window.location.href = "/login";
-      });
+    if (!registerData.success) {
+      return setErrorMessages(registerData.validationErrors);
+    }
+
+    window.location.href = "/login";
   }
 
   return (
