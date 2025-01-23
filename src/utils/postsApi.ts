@@ -11,3 +11,22 @@ export async function getAllPosts() {
     return error;
   }
 }
+
+export async function fetchLikePost(postId: number) {
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await fetch(`${server}/api/posts/${postId}/like`, {
+      method: "PUT",
+      headers: {
+        Authorization: token ? token : "",
+      },
+    });
+    const liked = await response.json();
+
+    return liked;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
