@@ -49,6 +49,7 @@ export async function loginUser(data: any) {
   try {
     const response = await fetch(`${server}/api/users/login`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
