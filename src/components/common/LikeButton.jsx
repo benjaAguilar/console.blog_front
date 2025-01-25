@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { getAuthUser } from "../../utils/userApi";
-import { fetchLikePost } from "../../utils/postsApi";
 import { fetchData } from "../../utils/utils";
 
 export function LikeButton({ usersLikes, postId }) {
