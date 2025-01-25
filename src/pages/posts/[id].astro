@@ -4,11 +4,15 @@ import Layout from "../../layouts/Layout.astro";
 import { CommentSection } from '../../components/common/comments/CommentSection';
 import { Stats } from '../../components/common/Stats';
 import { LikeButton } from '../../components/common/LikeButton';
+import { fetchData } from '../../utils/utils';
 
 const { id } = Astro.params;
 
-const response = await fetch(`http://localhost:3000/api/posts/${id}`);
-const post = await response.json();
+const post = await fetchData(`/api/posts/${id}`, 'GET');
+
+if(!post.success){
+    return Astro.redirect('/posts/not-found');
+}
 
 const md = await fetch(post.post.contentUrl);
 const md2 = await md.text();
