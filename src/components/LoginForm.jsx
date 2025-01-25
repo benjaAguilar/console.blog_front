@@ -5,7 +5,6 @@ export function LoginForm() {
   const [errorMessages, setErrorMessages] = useState(null);
 
   const formRef = useRef();
-  const server = import.meta.env.PUBLIC_SERVER;
 
   async function loginUser(e) {
     e.preventDefault();
