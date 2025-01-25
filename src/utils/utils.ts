@@ -13,13 +13,15 @@ class CustomError extends Error {
 export async function fetchData(
   path: string,
   method: string,
-  headers?: HeadersInit
+  headers?: HeadersInit,
+  body?: BodyInit
 ) {
   try {
     const response = await fetch(`${server}${path}`, {
       method: method,
       credentials: "include",
       headers: headers,
+      body: body,
     });
 
     if (response.status === 401) {
