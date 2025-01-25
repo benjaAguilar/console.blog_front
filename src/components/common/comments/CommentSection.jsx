@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import { GetComments } from "./GetComments";
-import { createComment, getPostComments } from "../../../utils/commentsApi";
 import { fetchData } from "../../../utils/utils";
 
 export function CommentSection({ postId }) {
