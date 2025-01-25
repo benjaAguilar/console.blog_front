@@ -1,6 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import {LoginForm} from '../components/LoginForm.jsx'
+import { LoginForm } from '../components/LoginForm.jsx'
+import { fetchData } from "../utils/utils";
+
+const cookies = Astro.request.headers.get('cookie') || '';
+const user = await fetchData('/api/users/authUser', 'GET', {Cookie: cookies});
+
+if(user.success){
+    return Astro.redirect('/');
+}
 ---
 
 <Layout>

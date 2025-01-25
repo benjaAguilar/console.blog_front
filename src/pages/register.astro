@@ -1,6 +1,14 @@
 ---
 import { RegisterForm } from "../components/RegisterForm";
 import Layout from "../layouts/Layout.astro";
+import { fetchData } from "../utils/utils";
+
+const cookies = Astro.request.headers.get('cookie') || '';
+const user = await fetchData('/api/users/authUser', 'GET', {Cookie: cookies});
+
+if(user.success){
+    return Astro.redirect('/');
+}
 ---
 
 <Layout>
