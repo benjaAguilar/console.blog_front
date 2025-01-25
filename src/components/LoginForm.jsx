@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { loginUser } from "../utils/userApi";
+import { fetchData } from "../utils/utils";
 
 export function LoginForm() {
   const [errorMessages, setErrorMessages] = useState(null);
@@ -7,19 +7,22 @@ export function LoginForm() {
   const formRef = useRef();
   const server = import.meta.env.PUBLIC_SERVER;
 
-  async function fetchData(e) {
+  async function loginUser(e) {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
     const data = new URLSearchParams(formData);
 
-    const loginData = await loginUser(data);
+    const loginData = await fetchData(
+      "/api/users/login",
+      "POST",
+      { "Content-Type": "application/x-www-form-urlencoded" },
+      data
+    );
 
     if (!loginData.success) {
       return setErrorMessages(loginData.validationErrors);
     }
-
-    localStorage.setItem("token", loginData.token);
 
     window.location.href = "/";
   }
@@ -42,7 +45,7 @@ export function LoginForm() {
           type="submit"
           value="Login"
           onClick={(e) => {
-            fetchData(e);
+            loginUser(e);
           }}
         />
       </form>

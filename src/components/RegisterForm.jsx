@@ -1,18 +1,23 @@
 import { useRef, useState } from "react";
-import { registerUser } from "../utils/userApi";
+import { fetchData } from "../utils/utils";
 
 export function RegisterForm() {
   const [errorMessages, setErrorMessages] = useState(null);
 
   const formRef = useRef();
 
-  async function fetchData(e) {
+  async function registerUser(e) {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
     const data = new URLSearchParams(formData);
 
-    const registerData = await registerUser(data);
+    const registerData = await fetchData(
+      "/api/users/register",
+      "POST",
+      { "Content-Type": "application/x-www-form-urlencoded" },
+      data
+    );
 
     if (!registerData.success) {
       return setErrorMessages(registerData.validationErrors);
@@ -42,7 +47,7 @@ export function RegisterForm() {
           type="submit"
           value="Sign Up"
           onClick={(e) => {
-            fetchData(e);
+            registerUser(e);
           }}
         />
       </form>

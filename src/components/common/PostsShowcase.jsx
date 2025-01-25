@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import PostCard from "./PostsCard";
-import { getAllPosts } from "../../utils/postsApi";
+import { fetchData } from "../../utils/utils";
 
 export function PostsShowcase() {
   const [posts, setPosts] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
   useEffect(() => {
-    async function fetchData() {
-      const postsData = await getAllPosts();
+    async function getAllPosts() {
+      const postsData = await fetchData("/api/posts", "GET");
 
       if (!postsData.success) {
         setErrorMessage(postsData.message);
@@ -18,10 +18,9 @@ export function PostsShowcase() {
       setPosts(postsData.posts);
     }
 
-    fetchData();
+    getAllPosts();
   }, []);
-  console.log(errorMessage);
-  console.log(posts);
+
   return (
     <div className="p-4">
       <h2>Ultimos posts</h2>

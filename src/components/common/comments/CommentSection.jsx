@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { GetComments } from "./GetComments";
 import { createComment, getPostComments } from "../../../utils/commentsApi";
+import { fetchData } from "../../../utils/utils";
 
 export function CommentSection({ postId }) {
   const [reRender, setReRender] = useState(0);
@@ -10,7 +11,7 @@ export function CommentSection({ postId }) {
 
   useEffect(() => {
     async function getComments() {
-      const data = await getPostComments(postId);
+      const data = await fetchData(`/api/posts/${postId}/comments`, "GET");
 
       if (!data.success) {
         console.log(data.message);
@@ -29,7 +30,12 @@ export function CommentSection({ postId }) {
     const formData = new FormData(formRef.current);
     const data = new URLSearchParams(formData);
 
-    const commented = await createComment(postId, data);
+    const commented = await fetchData(
+      `/api/posts/${postId}/comments`,
+      "POST",
+      { "Content-Type": "application/x-www-form-urlencoded" },
+      data
+    );
 
     if (!commented.success) {
       return console.log(commented.message);

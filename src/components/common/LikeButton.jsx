@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { getAuthUser } from "../../utils/userApi";
 import { fetchLikePost } from "../../utils/postsApi";
+import { fetchData } from "../../utils/utils";
 
 export function LikeButton({ usersLikes, postId }) {
   const [likeAmount, setLikeAmount] = useState(usersLikes.length);
   const [fill, setFill] = useState("none");
 
-  const server = import.meta.env.PUBLIC_SERVER;
-
   useEffect(() => {
     async function checkUserLike() {
-      const user = await getAuthUser();
+      const user = await fetchData("/api/users/authUser", "GET");
 
       const isLiked = usersLikes.filter(
         (userLike) => userLike.userId === user.id
@@ -36,7 +35,7 @@ export function LikeButton({ usersLikes, postId }) {
       state = "none";
     }
 
-    const like = await fetchLikePost(postId);
+    const like = await fetchData(`/api/posts/${postId}/like`, "PUT");
 
     if (!like.success) {
       console.log(like.message);
