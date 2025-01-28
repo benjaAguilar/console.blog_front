@@ -16,6 +16,14 @@ export function HeaderBtns() {
     getUser();
   }, []);
 
+  async function logoutUser() {
+    const isLoggedOut = await fetchData("/api/users/logout", "POST");
+
+    if (isLoggedOut.success) {
+      setUsername(null);
+    }
+  }
+
   return (
     <>
       {username ? (
@@ -24,9 +32,9 @@ export function HeaderBtns() {
             <img src="/icons/user.svg" alt="user icon" />
             <p>{username}</p>
           </div>
-          <a href="/logout" className="bg-cyan-500 p-2 rounded">
+          <button onClick={logoutUser} className="bg-cyan-500 p-2 rounded">
             Cerrar sesion
-          </a>
+          </button>
         </div>
       ) : (
         <div className="flex gap-4 items-center">
