@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { GetComments } from "./GetComments";
 import { fetchData } from "../../../utils/utils";
+import { feedbackMessage, hasMessage } from "../../../utils/context";
 
 export function CommentSection({ postId }) {
   const [reRender, setReRender] = useState(0);
@@ -14,6 +15,14 @@ export function CommentSection({ postId }) {
 
       if (!data.success) {
         console.log(data.message);
+
+        feedbackMessage.set({
+          success: data.success,
+          message: data.message,
+        });
+
+        hasMessage.set(true);
+
         return;
       }
 
@@ -35,6 +44,13 @@ export function CommentSection({ postId }) {
       { "Content-Type": "application/x-www-form-urlencoded" },
       data
     );
+
+    feedbackMessage.set({
+      success: commented.success,
+      message: commented.message,
+    });
+
+    hasMessage.set(true);
 
     if (!commented.success) {
       return console.log(commented.message);

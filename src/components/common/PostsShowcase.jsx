@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PostCard from "./PostsCard";
 import { fetchData } from "../../utils/utils";
+import { feedbackMessage, hasMessage } from "../../utils/context";
 
 export function PostsShowcase() {
   const [posts, setPosts] = useState();
@@ -12,6 +13,13 @@ export function PostsShowcase() {
 
       if (!postsData.success) {
         setErrorMessage(postsData.message);
+
+        feedbackMessage.set({
+          success: false,
+          message: postsData.message,
+        });
+
+        hasMessage.set(true);
         return;
       }
 
