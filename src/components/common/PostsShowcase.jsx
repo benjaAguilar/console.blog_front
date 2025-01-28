@@ -8,6 +8,18 @@ export function PostsShowcase() {
   const [errorMessage, setErrorMessage] = useState();
 
   useEffect(() => {
+    const successOnLogin = localStorage.getItem("successOnLogin");
+
+    if (successOnLogin) {
+      feedbackMessage.set({
+        success: true,
+        message: "Successfully logged in!",
+      });
+
+      hasMessage.set(true);
+      localStorage.removeItem("successOnLogin");
+    }
+
     async function getAllPosts() {
       const postsData = await fetchData("/api/posts", "GET");
 

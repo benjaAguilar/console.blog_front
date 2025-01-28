@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { fetchData } from "../utils/utils";
+import { feedbackMessage, hasMessage } from "../utils/context";
 
 export function RegisterForm() {
   const [errorMessages, setErrorMessages] = useState(null);
@@ -19,10 +20,18 @@ export function RegisterForm() {
       data
     );
 
+    feedbackMessage.set({
+      success: registerData.success,
+      message: registerData.message,
+    });
+
+    hasMessage.set(true);
+
     if (!registerData.success) {
       return setErrorMessages(registerData.validationErrors);
     }
 
+    localStorage.setItem("successOnRegister", true);
     window.location.href = "/login";
   }
 

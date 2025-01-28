@@ -1,10 +1,26 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchData } from "../utils/utils";
+import { feedbackMessage, hasMessage } from "../utils/context";
 
 export function LoginForm() {
   const [errorMessages, setErrorMessages] = useState(null);
 
   const formRef = useRef();
+
+  useEffect(() => {
+    const successOnRegister = localStorage.getItem("successOnRegister");
+
+    if (successOnRegister) {
+      feedbackMessage.set({
+        success: true,
+        message: "successfully registered user!",
+      });
+
+      hasMessage.set(true);
+
+      localStorage.removeItem("successOnRegister");
+    }
+  }, []);
 
   async function loginUser(e) {
     e.preventDefault();
@@ -19,10 +35,18 @@ export function LoginForm() {
       data
     );
 
+    feedbackMessage.set({
+      success: loginData.success,
+      message: loginData.message,
+    });
+
+    hasMessage.set(true);
+
     if (!loginData.success) {
       return setErrorMessages(loginData.validationErrors);
     }
 
+    localStorage.setItem("successOnLogin", true);
     window.location.href = "/";
   }
 

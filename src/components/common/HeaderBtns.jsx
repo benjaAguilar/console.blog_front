@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../utils/utils";
+import { feedbackMessage, hasMessage } from "../../utils/context";
 
 export function HeaderBtns() {
   const [username, setUsername] = useState(null);
@@ -18,6 +19,13 @@ export function HeaderBtns() {
 
   async function logoutUser() {
     const isLoggedOut = await fetchData("/api/users/logout", "POST");
+
+    feedbackMessage.set({
+      success: isLoggedOut.success,
+      message: isLoggedOut.message,
+    });
+
+    hasMessage.set(true);
 
     if (isLoggedOut.success) {
       setUsername(null);

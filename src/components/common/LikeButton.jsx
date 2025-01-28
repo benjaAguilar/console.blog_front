@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../utils/utils";
+import { feedbackMessage, hasMessage } from "../../utils/context";
 
 export function LikeButton({ usersLikes, postId }) {
   const [likeAmount, setLikeAmount] = useState(usersLikes.length);
@@ -34,6 +35,13 @@ export function LikeButton({ usersLikes, postId }) {
     }
 
     const like = await fetchData(`/api/posts/${postId}/like`, "PUT");
+
+    feedbackMessage.set({
+      success: like.success,
+      message: like.message,
+    });
+
+    hasMessage.set(true);
 
     if (!like.success) {
       console.log(like.message);
