@@ -1,4 +1,5 @@
 ---
+import { FeedbackMessage } from "../components/common/FeedbackMessage";
 import Header from "../components/Header.astro";
 ---
 
@@ -14,6 +15,7 @@ import Header from "../components/Header.astro";
 	<body>
 		<Header />
 		<main class="p-4">
+			<FeedbackMessage client:load />
 			<slot />
 		</main>
 	</body>
