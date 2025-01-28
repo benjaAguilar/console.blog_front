@@ -1,4 +1,4 @@
-import { LikeButton } from "../LikeButton";
+import { LikeCommentButton } from "./likeCommentBtn";
 
 export function GetComments({ comments }) {
   return (
@@ -23,6 +23,10 @@ export function GetComments({ comments }) {
                   <i>{date}</i>
                 </div>
                 <p>{comment.content}</p>
+                <LikeCommentButton
+                  usersLikes={comment.userLikes}
+                  commentsId={comment.id}
+                />
               </div>
               <hr />
             </div>
