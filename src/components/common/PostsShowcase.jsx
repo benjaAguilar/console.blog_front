@@ -22,7 +22,7 @@ export function PostsShowcase() {
   }, []);
 
   return (
-    <div className="p-4">
+    <div>
       <h2>Ultimos posts</h2>
       <div className="flex flex-wrap gap-4">
         {posts ? (
