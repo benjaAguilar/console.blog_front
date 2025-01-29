@@ -3,6 +3,7 @@ import { Stats } from "./Stats";
 function PostCard({
   id,
   title,
+  slug,
   thumbnail,
   views,
   readtime,
@@ -12,7 +13,7 @@ function PostCard({
 }) {
   return (
     <a
-      href={`/posts/${id}`}
+      href={`/posts/${slug}`}
       className="flex flex-col gap-3 rounded-lg border-cyan-500 border-2 flex-grow bg-white basis-1/2 md:basis-1/3 lg:basis-1/4"
     >
       <div className="flex flex-col gap-2 overflow-hidden rounded-lg w-full">

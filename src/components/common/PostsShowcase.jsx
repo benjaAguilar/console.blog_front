@@ -51,6 +51,7 @@ export function PostsShowcase() {
               <PostCard
                 id={post.id}
                 title={post.title}
+                slug={post.slug}
                 thumbnail={post.thumbnailUrl}
                 views={post.views}
                 readtime={post.readtimeMin}
