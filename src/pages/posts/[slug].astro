@@ -6,18 +6,29 @@ import { Stats } from '../../components/common/Stats';
 import { LikeButton } from '../../components/common/LikeButton';
 import { fetchData } from '../../utils/utils';
 
-const { id } = Astro.params;
+const { slug } = Astro.params;
 
-const post = await fetchData(`/api/posts/${id}`, 'GET');
+const post = await fetchData(`/api/posts/${slug}`, 'GET');
 
 if(!post.success){
     return Astro.redirect('/posts/not-found');
 }
 
-const md = await fetch(post.post.contentUrl);
-const md2 = await md.text();
+async function getMdContent(){
+    try {
+        const md = await fetch(post.post.contentUrl);
+        const md2 = await md.text();
 
-const content = await convertToMarkdown(md2);
+        const content = await convertToMarkdown(md2);
+        return content;      
+    } catch (error) {
+        console.error(error);
+        return Astro.redirect('/posts/not-found');
+    }
+}
+
+const content = await getMdContent();
+Astro.cookies.delete('postId');
 ---
 
 <Layout>
@@ -60,7 +71,7 @@ const content = await convertToMarkdown(md2);
             <hr>
             <div set:html={content} id="content"></div>
             <h3>Comments</h3>
-            <CommentSection postId={id} client:load />
+            <CommentSection postId={post.post.id} client:load />
         </div>
     </div>
 </Layout>
