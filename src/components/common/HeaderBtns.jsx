@@ -40,16 +40,25 @@ export function HeaderBtns() {
             <img src="/icons/user.svg" alt="user icon" />
             <p>{username}</p>
           </div>
-          <button onClick={logoutUser} className="bg-cyan-500 p-2 rounded">
+          <button
+            onClick={logoutUser}
+            className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
+          >
             Cerrar sesion
           </button>
         </div>
       ) : (
         <div className="flex gap-4 items-center">
-          <a href="/login" className="bg-cyan-500 p-2 rounded">
+          <a
+            href="/login"
+            className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
+          >
             Iniciar Sesion
           </a>
-          <a href="/register" className="bg-cyan-500 p-2 rounded">
+          <a
+            href="/register"
+            className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
+          >
             Registrarse
           </a>
         </div>

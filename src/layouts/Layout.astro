@@ -22,11 +22,47 @@ import Header from "../components/Header.astro";
 </html>
 
 <style>
+	@font-face {
+		font-family: yellowhouse;
+		src: url("../assets/fonts/YellowHouse.otf");
+	}
+
+	:root{
+		--logo-font: yellowhouse;
+		--col-black: #1c2024;
+		--col-purple: #95389E;
+		--col-cyan: #43D8C9;
+		--col-white: #F7F7F7;
+		--noise: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05) 0px,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+      ),
+      repeating-linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.05) 0px,
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+	}
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
-		background-color: #fafafa;
+		background-color: var(--col-white);
+		background-image: var(--noise);
+	}
+
+	.btn-primary {
+  		@apply bg-amber-500 text-[--col-white] px-4 py-2 rounded;
+	}
+
+	.btn-secondary {
+  		@apply bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600;
 	}
 </style>

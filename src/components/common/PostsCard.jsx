@@ -14,15 +14,15 @@ function PostCard({
   return (
     <a
       href={`/posts/${slug}`}
-      className="flex flex-col gap-3 rounded-lg border-cyan-500 border-2 flex-grow bg-white basis-1/2 md:basis-1/3 lg:basis-1/4"
+      className="flex flex-col gap-3 rounded-lg bg-amber-500 bg-opacity-30 flex-grow basis-1/2 md:basis-1/3 lg:basis-1/4"
     >
       <div className="flex flex-col gap-2 overflow-hidden rounded-lg w-full">
         <img
           src={thumbnail}
           alt={`thumbnail image of ${title}`}
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover aspect-video"
         />
-        <p className="w-full px-2">{title}</p>
+        <p className="w-full px-2 font-[yellowhouse] text-2xl">{title}</p>
       </div>
       <div className="flex gap-3 w-full px-2">
         categories:
