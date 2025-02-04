@@ -26,13 +26,16 @@ export function FeedbackMessage() {
   return (
     <div
       ref={messageRef}
+      style={{
+        backgroundImage: "var(--noise)",
+      }}
       className={`${
-        feedback.success ? "bg-green-500" : "bg-red-500"
+        feedback.success ? "bg-green-400" : "bg-red-400"
       } hidden gap-4 p-2 rounded-md fixed bottom-0 right-0 mb-4 mr-4 z-10`}
     >
-      <div className="flex flex-col min-w-80">
+      <div className="flex flex-col min-w-64">
         <button onClick={closeMessage} className="self-end">
-          close
+          <img src="/icons/close.svg" alt="close icon" />
         </button>
         <p>{feedback.message}</p>
       </div>
