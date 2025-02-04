@@ -61,7 +61,6 @@ export function RegisterForm() {
     hasMessage.set(true);
 
     if (!registerData.success) {
-      console.dir(registerData);
       registerData.validationErrors.forEach((err) => {
         if (err.path === "username") {
           usernameRef.current.style.borderColor = "red";
