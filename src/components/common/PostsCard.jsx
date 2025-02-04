@@ -14,7 +14,7 @@ function PostCard({
   return (
     <a
       href={`/posts/${slug}`}
-      className="flex flex-col gap-3 rounded-lg bg-amber-500 bg-opacity-30 flex-grow basis-1/2 md:basis-1/3 lg:basis-1/4"
+      className="flex flex-col gap-3 rounded-lg bg-amber-500 bg-opacity-30 flex-grow basis-1/2 md:basis-1/3 lg:basis-1/4 pb-4"
     >
       <div className="flex flex-col gap-2 overflow-hidden rounded-lg w-full">
         <img
@@ -22,12 +22,18 @@ function PostCard({
           alt={`thumbnail image of ${title}`}
           className="w-full h-auto object-cover aspect-video"
         />
-        <p className="w-full px-2 font-[yellowhouse] text-2xl">{title}</p>
+        <p className="w-full px-2 text-xl font-medium">{title}</p>
       </div>
-      <div className="flex gap-3 w-full px-2">
-        categories:
+      <div className="flex gap-2 w-full px-2">
         {categories.map((category) => {
-          return <p key={category.categoryId}>{category.categoryId}</p>;
+          return (
+            <p
+              key={category.categoryId}
+              className=" text-xs rounded-2xl pl-2 pr-2 border border-[--col-black]"
+            >
+              {category.category.name}
+            </p>
+          );
         })}
       </div>
       <div className="flex flex-wrap gap-3 px-2">

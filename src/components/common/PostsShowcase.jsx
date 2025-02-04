@@ -43,7 +43,7 @@ export function PostsShowcase() {
 
   return (
     <div>
-      <h2>Ultimos posts</h2>
+      <h2 className="text-2xl mb-2">Ultimos posts</h2>
       <div className="flex flex-wrap gap-4">
         {posts ? (
           posts.map((post, i) => {
