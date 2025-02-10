@@ -47,23 +47,29 @@ export function GetComments({ comments, setReRender }) {
                 <img src="/icons/user.svg" alt="user icon" className="w-8" />
                 <div className="row-start-2 row-span-2"></div>
                 <p className="text-lg">{comment.owner.username}</p>
-                <i className="justify-self-end">{date}</i>
-                <p>{comment.content}</p>
-                <div className="row-start-3 col-start-2">
-                  <LikeCommentButton
-                    usersLikes={comment.userLikes}
-                    commentsId={comment.id}
-                  />
+                <div className="justify-self-end flex items-center gap-4">
+                  <i>{date}</i>
                   {userId === comment.owner.id || isAdmin ? (
                     <button
-                      className="bg-amber-500 p-1 text-[--col-black] border-amber-500 border-2 rounded"
+                      className="flex items-center gap-1 bg-amber-500 p-1 text-[--col-black] border-amber-500 border-2 rounded"
                       onClick={() => {
                         deleteComment(comment.id);
                       }}
                     >
-                      delete
+                      <img
+                        src="/icons/delete.svg"
+                        alt="delete icon"
+                        className="w-5"
+                      />
                     </button>
                   ) : null}
+                </div>
+                <p>{comment.content}</p>
+                <div className="row-start-3 col-start-2 flex items-center gap-4">
+                  <LikeCommentButton
+                    usersLikes={comment.userLikes}
+                    commentsId={comment.id}
+                  />
                 </div>
               </div>
               <hr />
