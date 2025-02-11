@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../utils/utils";
+import { CategoriesLoading } from "./loading/CategoriesLoading";
 
 export function CategoriesShowcase() {
   const [categories, setCategories] = useState(null);
@@ -13,7 +14,8 @@ export function CategoriesShowcase() {
       }
     }
 
-    getCategories();
+    //to test loading, replace soon
+    setTimeout(getCategories, 5000);
   }, []);
 
   return (
@@ -33,7 +35,7 @@ export function CategoriesShowcase() {
             );
           })
         ) : (
-          <p>loading...</p>
+          <CategoriesLoading />
         )}
       </nav>
     </div>

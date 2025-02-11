@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PostCard from "./PostsCard";
 import { fetchData } from "../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../utils/context";
+import { PostsLoading } from "./loading/PostsLoading";
 
 export function PostsShowcase() {
   const [posts, setPosts] = useState();
@@ -38,7 +39,7 @@ export function PostsShowcase() {
       setPosts(postsData.posts);
     }
 
-    getAllPosts();
+    setTimeout(getAllPosts, 5000);
   }, []);
 
   return (
@@ -65,7 +66,7 @@ export function PostsShowcase() {
         ) : errorMessage ? (
           <div>{errorMessage}</div>
         ) : (
-          <div>Loading...</div>
+          <PostsLoading />
         )}
       </div>
     </div>
