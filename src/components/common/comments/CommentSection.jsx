@@ -29,7 +29,7 @@ export function CommentSection({ postId }) {
       setComments(data.comments);
     }
 
-    getComments();
+    setTimeout(getComments, 5000);
   }, [reRender]);
 
   async function fetchComment(e) {
