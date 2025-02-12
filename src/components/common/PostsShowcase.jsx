@@ -4,7 +4,7 @@ import { fetchData } from "../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../utils/context";
 import { PostsLoading } from "./loading/PostsLoading";
 
-export function PostsShowcase() {
+export function PostsShowcase({ param }) {
   const [posts, setPosts] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
@@ -22,7 +22,10 @@ export function PostsShowcase() {
     }
 
     async function getAllPosts() {
-      const postsData = await fetchData("/api/posts", "GET");
+      const postsData = await fetchData(
+        `/api/posts${param ? `?category=${param}` : ""}`,
+        "GET"
+      );
 
       if (!postsData.success) {
         setErrorMessage(postsData.message);
