@@ -27,7 +27,7 @@ export function CategoriesShowcase() {
             return (
               <a
                 key={category.id}
-                href=""
+                href={`?category=${category.name}`}
                 className="bg-amber-500 bg-opacity-40 rounded-2xl pl-4 pr-4 hover:bg-opacity-60"
               >
                 {category.name}
