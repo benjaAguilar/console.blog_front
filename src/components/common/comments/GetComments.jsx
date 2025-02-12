@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LikeCommentButton } from "./likeCommentBtn";
 import { fetchData } from "../../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../../utils/context";
+import { CommentsLoading } from "../loading/CommentsLoading";
 
 export function GetComments({ comments, setReRender }) {
   const [userId, setUserId] = useState(null);
@@ -77,7 +78,7 @@ export function GetComments({ comments, setReRender }) {
           );
         })
       ) : (
-        <div>Loading...</div>
+        <CommentsLoading />
       )}
     </div>
   );
