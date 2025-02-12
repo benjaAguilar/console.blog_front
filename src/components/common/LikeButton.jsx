@@ -73,7 +73,9 @@ export function LikeButton({ usersLikes, postId }) {
           strokeLinecap="round"
         />
       </svg>
-      <p>{likeAmount} likes</p>
+      <p>
+        {likeAmount} {likeAmount === 1 ? "like" : "likes"}
+      </p>
     </div>
   );
 }

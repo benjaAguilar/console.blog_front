@@ -47,7 +47,7 @@ function PostCard({
           icon={"/icons/like.svg"}
           alt={"Likes icon"}
           data={likes}
-          name={"likes"}
+          name={likes === 1 ? "like" : "likes"}
         />
         <Stats
           icon={"/icons/comment.svg"}
