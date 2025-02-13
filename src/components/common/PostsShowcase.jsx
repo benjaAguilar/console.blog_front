@@ -42,7 +42,7 @@ export function PostsShowcase({ param }) {
       setPosts(postsData.posts);
     }
 
-    setTimeout(getAllPosts, 5000);
+    getAllPosts();
   }, []);
 
   return (

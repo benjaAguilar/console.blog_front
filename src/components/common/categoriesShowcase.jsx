@@ -14,8 +14,7 @@ export function CategoriesShowcase() {
       }
     }
 
-    //to test loading, replace soon
-    setTimeout(getCategories, 5000);
+    getCategories();
   }, []);
 
   return (
