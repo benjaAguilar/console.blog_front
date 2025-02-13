@@ -73,7 +73,7 @@ export function LikeButton({ usersLikes, postId }) {
           strokeLinecap="round"
         />
       </svg>
-      <p>
+      <p className="text-nowrap">
         {likeAmount} {likeAmount === 1 ? "like" : "likes"}
       </p>
     </div>
