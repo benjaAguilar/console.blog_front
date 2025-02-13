@@ -35,37 +35,41 @@ Astro.cookies.delete('postId');
     <div class="flex flex-col items-center">
         <img src={post.post.thumbnailUrl} alt="" class="aspect-video w-full">
         <div class="postContainer">
-            <div class="flex gap-4">
-                <Stats
-                icon={"/icons/views.svg"}
-                alt={"Views icon"}
-                data={post.post.views}
-                name={"visitas"}
-              />
-               <LikeButton 
-                usersLikes={post.post.userLikes}
-                postId={post.post.id}
-                client:load
-                />
-              <Stats
-                icon={"/icons/comment.svg"}
-                alt={"Comments icon"}
-                data={post.post.comments.length}
-                name={"comentarios"}
-              />
-              <Stats
-                icon={"/icons/readtime.svg"}
-                alt={"Readtime icon"}
-                data={post.post.readtimeMin}
-                name={"min de lectura"}
-              />
-            {
-                post.post.categories.map((category: { category: { name: unknown; }; }) => {
-                    if(category){
-                        return <p>{category.category.name}</p>
+            <div class="flex flex-col items-start gap-4 mb-4 overflow-x-auto">
+                <div class="flex gap-4">
+                    <Stats
+                    icon={"/icons/views.svg"}
+                    alt={"Views icon"}
+                    data={post.post.views}
+                    name={"visitas"}
+                    />
+                    <LikeButton 
+                        usersLikes={post.post.userLikes}
+                        postId={post.post.id}
+                        client:load
+                        />
+                    <Stats
+                        icon={"/icons/comment.svg"}
+                        alt={"Comments icon"}
+                        data={post.post.comments.length}
+                        name={"comentarios"}
+                    />
+                    <Stats
+                        icon={"/icons/readtime.svg"}
+                        alt={"Readtime icon"}
+                        data={post.post.readtimeMin}
+                        name={"min de lectura"}
+                    />
+                </div>
+                <div class="flex gap-4">
+                    {
+                        post.post.categories.map((category: { category: { name: unknown; }; }) => {
+                            if(category){
+                                return <p class="bg-amber-500 bg-opacity-40 rounded-2xl pl-4 pr-4">{category.category.name}</p>
+                            }
+                        })
                     }
-                })
-            }
+                </div>
             </div>
             <h1>{post.post.title}</h1>
             <hr>
@@ -101,6 +105,10 @@ Astro.cookies.delete('postId');
         z-index: 3;
     }
     #content{
+        h1, h2, h3, h4{
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
         h2, h3, h4, pre, p, hr{
             margin-bottom: 1rem;
         }
@@ -113,6 +121,24 @@ Astro.cookies.delete('postId');
         h4{
             font-size: 1.2rem;
         }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            text-wrap: pretty;
+         }
+
+         p:nth-child(even) {
+            background: var(--noise);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        em{
+            color: #555;
+        }
         pre {
             background-color: #2d2d2d; 
             color: #f8f8f2;           
@@ -124,9 +150,42 @@ Astro.cookies.delete('postId');
             line-height: 1.5;         
         }
         code {
-            color: #66d9ef;         
-            background: none;       
-            font-size: 1em;          
+            background-color: #2d2d2d;
+            padding: 0.3rem;
+            border-radius: 0.5rem; 
+            color: #66d9ef;            
+            font-size: 1em;           
         }
+        a{
+            color: #0000EE;
+            text-decoration: underline;
+        }
+        ul{
+            list-style: disc;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+            li{
+                margin-left: 1rem;
+            }
+        }
+        ol{
+            list-style: decimal;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+            li{
+                margin-left: 1rem;
+            }
+        }
+        blockquote {
+            font-style: italic;
+            color: #555; 
+            border-left: 4px solid #66d9ef; 
+            padding: 1rem; 
+            margin: 1rem 0; 
+            background-color: #f9f9f9; 
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+
     }
 </style>
