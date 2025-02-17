@@ -37,29 +37,37 @@ Astro.cookies.delete('postId');
         <div class="postContainer">
             <div class="flex flex-col items-start gap-4 mb-4 overflow-x-auto">
                 <div class="flex gap-4">
-                    <Stats
-                    icon={"/icons/views.svg"}
-                    alt={"Views icon"}
-                    data={post.post.views}
-                    name={"visitas"}
-                    />
-                    <LikeButton 
-                        usersLikes={post.post.userLikes}
-                        postId={post.post.id}
-                        client:load
+                    <div class="mr-4">
+                        <Stats
+                        icon={"/icons/views.svg"}
+                        alt={"Views icon"}
+                        data={post.post.views}
+                        name={"views"}
                         />
-                    <Stats
-                        icon={"/icons/comment.svg"}
-                        alt={"Comments icon"}
-                        data={post.post.comments.length}
-                        name={"comentarios"}
-                    />
-                    <Stats
-                        icon={"/icons/readtime.svg"}
-                        alt={"Readtime icon"}
-                        data={post.post.readtimeMin}
-                        name={"min de lectura"}
-                    />
+                    </div>
+                    <div class="mr-4">
+                        <LikeButton 
+                            usersLikes={post.post.userLikes}
+                            postId={post.post.id}
+                            client:load
+                            />
+                    </div>
+                    <div class="mr-4">
+                        <Stats
+                            icon={"/icons/comment.svg"}
+                            alt={"Comments icon"}
+                            data={post.post.comments.length}
+                            name={"comments"}
+                        />
+                    </div>
+                    <div>
+                        <Stats
+                            icon={"/icons/readtime.svg"}
+                            alt={"Readtime icon"}
+                            data={post.post.readtimeMin}
+                            name={"min read"}
+                        />
+                    </div>
                 </div>
                 <div class="flex gap-4">
                     {
