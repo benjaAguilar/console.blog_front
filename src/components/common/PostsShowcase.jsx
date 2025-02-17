@@ -23,7 +23,7 @@ export function PostsShowcase({ lang, translations, param }) {
 
     async function getAllPosts() {
       const postsData = await fetchData(
-        `/api/posts${param ? `?category=${param}` : ""}`,
+        `/api/posts?lang=${lang}${param ? `&category=${param}` : ""}`,
         "GET"
       );
 
