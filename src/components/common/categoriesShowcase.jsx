@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../utils/utils";
 import { CategoriesLoading } from "./loading/CategoriesLoading";
 
-export function CategoriesShowcase() {
+export function CategoriesShowcase({ translations }) {
   const [categories, setCategories] = useState(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export function CategoriesShowcase() {
 
   return (
     <div className="mt-4">
-      <h3 className="text-lg mb-2">Categorias</h3>
+      <h3 className="text-lg mb-2">{translations.title}</h3>
       <nav className="flex items-center gap-4 w-full overflow-x-auto">
         {categories ? (
           categories.map((category) => {

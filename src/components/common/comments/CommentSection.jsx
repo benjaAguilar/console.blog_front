@@ -3,7 +3,7 @@ import { GetComments } from "./GetComments";
 import { fetchData } from "../../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../../utils/context";
 
-export function CommentSection({ postId }) {
+export function CommentSection({ translations, postId }) {
   const [reRender, setReRender] = useState(0);
   const formRef = useRef();
   const inputRef = useRef();
@@ -78,7 +78,7 @@ export function CommentSection({ postId }) {
         />
         <input
           type="submit"
-          value="Comentar"
+          value={translations.comment}
           onClick={(e) => {
             fetchComment(e);
           }}

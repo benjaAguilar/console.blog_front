@@ -4,7 +4,7 @@ import { fetchData } from "../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../utils/context";
 import { PostsLoading } from "./loading/PostsLoading";
 
-export function PostsShowcase({ param }) {
+export function PostsShowcase({ translations, param }) {
   const [posts, setPosts] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
@@ -47,7 +47,7 @@ export function PostsShowcase({ param }) {
 
   return (
     <div>
-      <h2 className="text-2xl mb-2">Ultimos posts</h2>
+      <h2 className="text-2xl mb-2">{translations.PostsShowcase.title}</h2>
       <div className="flex flex-wrap gap-4">
         {posts ? (
           posts.map((post, i) => {
@@ -62,6 +62,7 @@ export function PostsShowcase({ param }) {
                 categories={post.categories}
                 comments={post.comments.length}
                 likes={post.userLikes.length}
+                translations={translations.PostCard}
                 key={post.id}
               />
             );

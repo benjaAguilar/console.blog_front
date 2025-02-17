@@ -10,6 +10,7 @@ function PostCard({
   categories,
   comments,
   likes,
+  translations,
 }) {
   return (
     <a
@@ -41,7 +42,7 @@ function PostCard({
           icon={"/icons/views.svg"}
           alt={"Views icon"}
           data={views}
-          name={"visitas"}
+          name={translations.StatsTitles.views}
         />
         <Stats
           icon={"/icons/like.svg"}
@@ -53,13 +54,13 @@ function PostCard({
           icon={"/icons/comment.svg"}
           alt={"Comments icon"}
           data={comments}
-          name={"comentarios"}
+          name={translations.StatsTitles.comments}
         />
         <Stats
           icon={"/icons/readtime.svg"}
           alt={"Readtime icon"}
           data={readtime}
-          name={"min de lectura"}
+          name={translations.StatsTitles.readtime}
         />
       </div>
     </a>

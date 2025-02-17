@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../utils/context";
 
-export function HeaderBtns() {
+export function HeaderBtns({ translations }) {
   const [username, setUsername] = useState(null);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function HeaderBtns() {
             onClick={logoutUser}
             className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
           >
-            Cerrar sesion
+            {translations.logout}
           </button>
         </div>
       ) : (
@@ -61,13 +61,13 @@ export function HeaderBtns() {
             href="/login"
             className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
           >
-            Iniciar Sesion
+            {translations.login}
           </a>
           <a
             href="/register"
             className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
           >
-            Registrarse
+            {translations.register}
           </a>
         </div>
       )}

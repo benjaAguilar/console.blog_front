@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { fetchData } from "../utils/utils";
 import { feedbackMessage, hasMessage } from "../utils/context";
 
-export function RegisterForm() {
+export function RegisterForm({ translations }) {
   const [errorMessages, setErrorMessages] = useState(null);
 
   const usernameRef = useRef();
@@ -104,7 +104,7 @@ export function RegisterForm() {
         className="flex flex-col gap-4 p-4 text-[--col-white] rounded-xl"
       >
         <div className="flex flex-col gap-1">
-          <label htmlFor="username">Usuario</label>
+          <label htmlFor="username">{translations.username}</label>
           <input
             type="text"
             id="username"
@@ -117,7 +117,7 @@ export function RegisterForm() {
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password">{translations.password}</label>
           <input
             type="password"
             id="password"
@@ -131,9 +131,9 @@ export function RegisterForm() {
         </div>
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
-            <label htmlFor="r-password">Repetir contraseña</label>
+            <label htmlFor="r-password">{translations.rPassword}</label>
             <span className="text-red-500 italic hidden" ref={spanMessage}>
-              * La contraseña no coincide *
+              * {translations.span} *
             </span>
           </div>
           <input

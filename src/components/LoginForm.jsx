@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { fetchData } from "../utils/utils";
 import { feedbackMessage, hasMessage } from "../utils/context";
 
-export function LoginForm() {
+export function LoginForm({ translations }) {
   const [errorMessages, setErrorMessages] = useState(null);
 
   const formRef = useRef();
@@ -103,7 +103,7 @@ export function LoginForm() {
         className="flex flex-col gap-4 p-4 text-[--col-white] rounded-xl"
       >
         <div className="flex flex-col gap-1">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">{translations.username}</label>
           <input
             type="text"
             id="username"
@@ -116,7 +116,7 @@ export function LoginForm() {
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{translations.password}</label>
           <input
             type="password"
             id="password"
