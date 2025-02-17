@@ -2,6 +2,7 @@
 import { RegisterForm } from "../../components/RegisterForm";
 import Layout from "../../layouts/Layout.astro";
 import { fetchData } from "../../utils/utils";
+import es from '../../data/es.json';
 
 const cookies = Astro.request.headers.get('cookie') || '';
 const user = await fetchData('/api/users/authUser', 'GET', {Cookie: cookies});
@@ -13,5 +14,5 @@ if(user.success){
 
 <Layout>
     <h1 class="text-3xl mt-4 mb-4 text-center">Registrarse</h1>
-    <RegisterForm client:load />
+    <RegisterForm translations={es.RegisterForm} client:load />
 </Layout>

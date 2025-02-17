@@ -2,13 +2,14 @@
 import { CategoriesShowcase } from '../../components/common/categoriesShowcase';
 import { PostsShowcase } from '../../components/common/PostsShowcase';
 import Layout from '../../layouts/Layout.astro';
+import es from '../../data/es.json';
 
 const category = Astro.url.searchParams.get('category');
 ---
 
 <Layout>
 	<div class="flex flex-col gap-6">
-		<CategoriesShowcase client:load />
-		<PostsShowcase param={category} client:load/>
+		<CategoriesShowcase translations={es.categotiesShowcase} client:load />
+		<PostsShowcase translations={es} param={category} client:load/>
 	</div>
 </Layout>

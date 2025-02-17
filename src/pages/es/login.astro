@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { LoginForm } from '../../components/LoginForm.jsx'
 import { fetchData } from "../../utils/utils";
+import es from '../../data/es.json';
 
 const cookies = Astro.request.headers.get('cookie') || '';
 const user = await fetchData('/api/users/authUser', 'GET', {Cookie: cookies});
@@ -13,5 +14,5 @@ if(user.success){
 
 <Layout>
     <h1 class="text-3xl mt-4 mb-4 text-center">Iniciar Sesion</h1>
-    <LoginForm client:load />
+    <LoginForm translations={es.LoginForm} client:load />
 </Layout>
