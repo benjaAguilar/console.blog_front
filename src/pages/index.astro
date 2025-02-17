@@ -10,6 +10,6 @@ const category = Astro.url.searchParams.get('category');
 <Layout>
 	<div class="flex flex-col gap-6">
 		<CategoriesShowcase translations={en.categotiesShowcase} client:load />
-		<PostsShowcase translations={en} param={category} client:load/>
+		<PostsShowcase lang={''} translations={en} param={category} client:load/>
 	</div>
 </Layout>
