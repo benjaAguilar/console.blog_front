@@ -11,10 +11,11 @@ function PostCard({
   comments,
   likes,
   translations,
+  lang,
 }) {
   return (
     <a
-      href={`/posts/${slug}`}
+      href={`${lang}/posts/${slug}`}
       className="flex flex-col gap-3 rounded-lg bg-amber-500 bg-opacity-30 flex-grow basis-1/2 md:basis-1/3 lg:basis-1/4 pb-4"
     >
       <div className="flex flex-col gap-2 overflow-hidden rounded-lg w-full">

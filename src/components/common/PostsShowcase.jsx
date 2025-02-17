@@ -4,7 +4,7 @@ import { fetchData } from "../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../utils/context";
 import { PostsLoading } from "./loading/PostsLoading";
 
-export function PostsShowcase({ translations, param }) {
+export function PostsShowcase({ lang, translations, param }) {
   const [posts, setPosts] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
@@ -63,6 +63,7 @@ export function PostsShowcase({ translations, param }) {
                 comments={post.comments.length}
                 likes={post.userLikes.length}
                 translations={translations.PostCard}
+                lang={lang}
                 key={post.id}
               />
             );
