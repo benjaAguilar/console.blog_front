@@ -5,6 +5,7 @@ import { CommentSection } from '../../components/common/comments/CommentSection'
 import { Stats } from '../../components/common/Stats';
 import { LikeButton } from '../../components/common/LikeButton';
 import { fetchData } from '../../utils/utils';
+import en from '../../data/en.json';
 
 const { slug } = Astro.params;
 
@@ -83,7 +84,7 @@ Astro.cookies.delete('postId');
             <hr>
             <div set:html={content} id="content"></div>
             <h3>Comments</h3>
-            <CommentSection postId={post.post.id} client:load />
+            <CommentSection translations={en.CommentSection} postId={post.post.id} client:load />
         </div>
     </div>
 </Layout>
