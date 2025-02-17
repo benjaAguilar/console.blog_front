@@ -18,7 +18,7 @@ export function CategoriesShowcase() {
   }, []);
 
   return (
-    <div>
+    <div className="mt-4">
       <h3 className="text-lg mb-2">Categorias</h3>
       <nav className="flex items-center gap-4 w-full overflow-x-auto">
         {categories ? (
