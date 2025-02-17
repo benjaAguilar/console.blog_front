@@ -1,0 +1,199 @@
+---
+import { convertToMarkdown } from '../../../utils/convertToMarkdown.js'
+import Layout from "../../../layouts/Layout.astro";
+import { CommentSection } from '../../../components/common/comments/CommentSection';
+import { Stats } from '../../../components/common/Stats';
+import { LikeButton } from '../../../components/common/LikeButton';
+import { fetchData } from '../../../utils/utils';
+
+const { slug } = Astro.params;
+
+const post = await fetchData(`/api/posts/${slug}`, 'GET');
+
+if(!post.success){
+    return Astro.redirect('/posts/not-found');
+}
+
+async function getMdContent(){
+    try {
+        const md = await fetch(post.post.contentUrl);
+        const md2 = await md.text();
+
+        const content = await convertToMarkdown(md2);
+        return content;      
+    } catch (error) {
+        console.error(error);
+        return Astro.redirect('/posts/not-found');
+    }
+}
+
+const content = await getMdContent();
+Astro.cookies.delete('postId');
+---
+
+<Layout>
+    <div class="flex flex-col items-center">
+        <img src={post.post.thumbnailUrl} alt="" class="aspect-video w-full">
+        <div class="postContainer">
+            <div class="flex flex-col items-start gap-4 mb-4 overflow-x-auto">
+                <div class="flex gap-4">
+                    <div class="mr-4">
+                        <Stats
+                        icon={"/icons/views.svg"}
+                        alt={"Views icon"}
+                        data={post.post.views}
+                        name={"visitas"}
+                        />
+                    </div>
+                    <div class="mr-4">
+                        <LikeButton 
+                            usersLikes={post.post.userLikes}
+                            postId={post.post.id}
+                            client:load
+                            />
+                    </div>
+                    <div class="mr-4">
+                        <Stats
+                            icon={"/icons/comment.svg"}
+                            alt={"Comments icon"}
+                            data={post.post.comments.length}
+                            name={"comentarios"}
+                        />
+                    </div>
+                    <div>
+                        <Stats
+                            icon={"/icons/readtime.svg"}
+                            alt={"Readtime icon"}
+                            data={post.post.readtimeMin}
+                            name={"min de lectura"}
+                        />
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    {
+                        post.post.categories.map((category: { category: { name: unknown; }; }) => {
+                            if(category){
+                                return <p class="bg-amber-500 bg-opacity-40 rounded-2xl pl-4 pr-4">{category.category.name}</p>
+                            }
+                        })
+                    }
+                </div>
+            </div>
+            <h1>{post.post.title}</h1>
+            <hr>
+            <div set:html={content} id="content"></div>
+            <h3>Comentarios</h3>
+            <CommentSection postId={post.post.id} client:load />
+        </div>
+    </div>
+</Layout>
+
+<style>
+    h1{
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    h3{
+        font-size: 1.5rem;
+    }
+    img{
+        mask-image: linear-gradient(black 20%, transparent);
+        filter: brightness(0.8) blur(1px);
+        position: absolute;
+    }
+    hr{
+        margin-bottom: 1rem;
+    }
+    .postContainer{
+        background-color: #fafafa;
+        border-radius: 1rem;
+        max-width: 80%;
+        margin-top: 20%;
+        padding: 2rem;
+        z-index: 3;
+    }
+    #content{
+        h1, h2, h3, h4{
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+        h2, h3, h4, pre, p, hr{
+            margin-bottom: 1rem;
+        }
+        h2{
+            font-size: 2rem;
+        }
+        h3{
+            font-size: 1.5rem;
+        }
+        h4{
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            text-wrap: pretty;
+         }
+
+         p:nth-child(even) {
+            background: var(--noise);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        em{
+            color: #555;
+        }
+        pre {
+            background-color: #2d2d2d; 
+            color: #f8f8f2;           
+            padding: 16px;           
+            border-radius: 8px;       
+            overflow-x: auto;         
+            font-family: 'Courier New', Courier, monospace; 
+            font-size: 14px;         
+            line-height: 1.5;         
+        }
+        code {
+            background-color: #2d2d2d;
+            padding: 0.3rem;
+            border-radius: 0.5rem; 
+            color: #66d9ef;            
+            font-size: 1em;           
+        }
+        a{
+            color: #0000EE;
+            text-decoration: underline;
+        }
+        ul{
+            list-style: disc;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+            li{
+                margin-left: 1rem;
+            }
+        }
+        ol{
+            list-style: decimal;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+            li{
+                margin-left: 1rem;
+            }
+        }
+        blockquote {
+            font-style: italic;
+            color: #555; 
+            border-left: 4px solid #66d9ef; 
+            padding: 1rem; 
+            margin: 1rem 0; 
+            background-color: #f9f9f9; 
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+
+    }
+</style>
