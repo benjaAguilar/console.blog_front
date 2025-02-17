@@ -1,0 +1,30 @@
+{
+  "categotiesShowcase": {
+    "title": "Categories"
+  },
+  "HeaderBtns": {
+    "logout": "Log Out",
+    "login": "Log In",
+    "register": "Register"
+  },
+  "PostCard": {
+    "StatsTitles": {
+      "views": "views",
+      "comments": "comments",
+      "readtime": "min read"
+    }
+  },
+  "PostsShowcase": {
+    "title": "Lastest Posts"
+  },
+  "LoginForm": {
+    "username": "Username",
+    "password": "Password"
+  },
+  "RegisterForm": {
+    "username": "Username",
+    "password": "Password",
+    "rPassword": "Repeat password",
+    "span": "Passwords do not match"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "categotiesShowcase": {
+    "title": "Categorias"
+  },
+  "HeaderBtns": {
+    "logout": "Cerrar sesion",
+    "login": "Iniciar sesion",
+    "register": "Registrarse"
+  },
+  "PostCard": {
+    "StatsTitles": {
+      "views": "visitas",
+      "comments": "comentarios",
+      "readtime": "min de lectura"
+    }
+  },
+  "PostsShowcase": {
+    "title": "Ultimos Posts"
+  },
+  "LoginForm": {
+    "username": "Usuario",
+    "password": "Contraseña"
+  },
+  "RegisterForm": {
+    "username": "Usuario",
+    "password": "Contraseña",
+    "rPassword": "Repetir contraseña",
+    "span": "Las contraseñas no coinciden"
+  }
+}
