@@ -26,5 +26,8 @@
     "password": "Password",
     "rPassword": "Repeat password",
     "span": "Passwords do not match"
+  },
+  "CommentSection": {
+    "comment": "Comment"
   }
 }

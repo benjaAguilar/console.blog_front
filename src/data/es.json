@@ -26,5 +26,8 @@
     "password": "Contraseña",
     "rPassword": "Repetir contraseña",
     "span": "Las contraseñas no coinciden"
+  },
+  "CommentSection": {
+    "comment": "Comentar"
   }
 }
