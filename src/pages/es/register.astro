@@ -8,7 +8,7 @@ const cookies = Astro.request.headers.get('cookie') || '';
 const user = await fetchData('/api/users/authUser', 'GET', {Cookie: cookies});
 
 if(user.success){
-    return Astro.redirect('/');
+    return Astro.redirect('/es');
 }
 ---
 
