@@ -7,8 +7,15 @@ import { CommentsLoading } from "../loading/CommentsLoading";
 export function GetComments({ comments, setReRender }) {
   const [userId, setUserId] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [dateLang, setDateLang] = useState("en-EN");
 
   useEffect(() => {
+    const pathname = window.location.pathname;
+
+    if (pathname.includes("/es")) {
+      setDateLang("es-ES");
+    }
+
     async function checkUser() {
       const user = await fetchData("/api/users/authUser", "GET");
 
@@ -39,7 +46,15 @@ export function GetComments({ comments, setReRender }) {
     <div className="flex flex-col gap-4 mt-4 w-full">
       {comments ? (
         comments.map((comment, i) => {
-          const date = new Date(comment.createdAt).toDateString();
+          const date = new Date(comment.createdAt).toLocaleDateString(
+            dateLang,
+            {
+              weekday: "short",
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            }
+          );
 
           return (
             <div key={i} className="w-full">
