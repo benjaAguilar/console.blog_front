@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../utils/utils";
 import { feedbackMessage, hasMessage } from "../../utils/context";
+import { LangBtn } from "./LangBtn";
 
 export function HeaderBtns({ translations }) {
   const [username, setUsername] = useState(null);
@@ -54,6 +55,7 @@ export function HeaderBtns({ translations }) {
           >
             {translations.logout}
           </button>
+          <LangBtn />
         </div>
       ) : (
         <div className="flex gap-4 items-center">
@@ -69,6 +71,7 @@ export function HeaderBtns({ translations }) {
           >
             {translations.register}
           </a>
+          <LangBtn />
         </div>
       )}
     </>
