@@ -5,6 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 import es from '../../data/es.json';
 
 const category = Astro.url.searchParams.get('category');
+Astro.cookies.set('lang', 'es');
 ---
 
 <Layout>
