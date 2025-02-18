@@ -15,7 +15,7 @@ export function LoginForm({ translations }) {
     if (successOnRegister) {
       feedbackMessage.set({
         success: true,
-        message: "successfully registered user!",
+        message: localStorage.getItem("message"),
       });
 
       hasMessage.set(true);
@@ -73,6 +73,14 @@ export function LoginForm({ translations }) {
     }
 
     localStorage.setItem("successOnLogin", true);
+    localStorage.setItem("message", loginData.message);
+
+    const pathname = window.location.pathname;
+    if (pathname.includes("/es")) {
+      window.location.href = "/es";
+      return;
+    }
+
     window.location.href = "/";
   }
 

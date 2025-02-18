@@ -14,7 +14,7 @@ export function PostsShowcase({ lang, translations, param }) {
     if (successOnLogin) {
       feedbackMessage.set({
         success: true,
-        message: "Successfully logged in!",
+        message: localStorage.getItem("message"),
       });
 
       hasMessage.set(true);

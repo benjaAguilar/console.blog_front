@@ -74,6 +74,14 @@ export function RegisterForm({ translations }) {
     }
 
     localStorage.setItem("successOnRegister", true);
+    localStorage.setItem("message", registerData.message);
+
+    const pathname = window.location.pathname;
+    if (pathname.includes("/es")) {
+      window.location.href = "/es/login";
+      return;
+    }
+
     window.location.href = "/login";
   }
 
