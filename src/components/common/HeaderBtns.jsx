@@ -5,8 +5,15 @@ import { LangBtn } from "./LangBtn";
 
 export function HeaderBtns({ translations }) {
   const [username, setUsername] = useState(null);
+  const [langPath, setLangPath] = useState("");
 
   useEffect(() => {
+    const pathname = window.location.pathname;
+
+    if (pathname.includes("/es")) {
+      setLangPath("/es");
+    }
+
     async function getUser() {
       const user = await fetchData("/api/users/authUser", "GET");
 
@@ -60,13 +67,13 @@ export function HeaderBtns({ translations }) {
       ) : (
         <div className="flex gap-4 items-center">
           <a
-            href="/login"
+            href={`${langPath}/login`}
             className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
           >
             {translations.login}
           </a>
           <a
-            href="/register"
+            href={`${langPath}/register`}
             className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
           >
             {translations.register}
