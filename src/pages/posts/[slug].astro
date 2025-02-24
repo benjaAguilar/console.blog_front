@@ -105,6 +105,7 @@ Astro.cookies.delete('postId');
     hr{
         margin-bottom: 1rem;
     }
+
     .postContainer{
         background-color: #fafafa;
         border-radius: 1rem;
@@ -113,6 +114,7 @@ Astro.cookies.delete('postId');
         padding: 2rem;
         z-index: 3;
     }
+
     #content{
         h1, h2, h3, h4{
             font-weight: 500;
@@ -195,6 +197,11 @@ Astro.cookies.delete('postId');
             border-radius: 4px; 
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
         }
+    }
 
+    @media (max-width: 800px){
+            .postContainer{
+                max-width: 100%;
+            }
     }
 </style>
