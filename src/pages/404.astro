@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+interface translates {
+    h1: string
+    h3: string
+    a: string
+    href: string
+}
+
+const text: translates = {
+    h1: "Oops! This page does not exist!",
+    h3: "404 Page not found",
+    a: "Go back",
+    href: '/'
+}
+
+const path = Astro.url.pathname;
+
+if(path.includes('/es')){
+    text.h1 = "Ups! Esta pagina no existe!";
+    text.h3 = "404 pagina no encontrada";
+    text.a = "Volver";
+    text.href = '/es';
+}
+---
+
+<Layout>
+    <div class="flex flex-col gap-4 items-center mt-20">
+        <h1 class="text-4xl">{text.h1}</h1>
+        <h3 class="text-xl">{text.h3}</h3>
+        <a href={text.href} class="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded">{text.a}</a>
+    </div>
+</Layout>
