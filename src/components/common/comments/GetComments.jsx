@@ -64,7 +64,7 @@ export function GetComments({ comments, setReRender }) {
                 <div className="row-start-2 row-span-2"></div>
                 <p className="text-lg">{comment.owner.username}</p>
                 <div className="justify-self-end flex items-center gap-4">
-                  <i>{date}</i>
+                  <i className="text-xs md:text-base">{date}</i>
                   {userId === comment.owner.id || isAdmin ? (
                     <button
                       className="flex items-center gap-1 bg-amber-500 p-1 text-[--col-black] border-amber-500 border-2 rounded"
