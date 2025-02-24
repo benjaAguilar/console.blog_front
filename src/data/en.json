@@ -28,6 +28,7 @@
     "span": "Passwords do not match"
   },
   "CommentSection": {
-    "comment": "Comment"
+    "comment": "Comment",
+    "placeholder": "Say something!"
   }
 }
