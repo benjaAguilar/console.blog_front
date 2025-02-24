@@ -43,7 +43,7 @@ export function HeaderBtns({ translations }) {
   return (
     <>
       {username ? (
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-wrap gap-4 items-center">
           <div className="flex gap-2 items-center text-[--col-white]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ export function HeaderBtns({ translations }) {
           <LangBtn />
         </div>
       ) : (
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-wrap gap-4 items-center">
           <a
             href={`${langPath}/login`}
             className="bg-amber-500 p-2 text-[--col-black] border-amber-500 border-2 rounded hover:bg-transparent hover:text-[--col-white]"
