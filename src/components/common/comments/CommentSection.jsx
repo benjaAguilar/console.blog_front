@@ -72,7 +72,7 @@ export function CommentSection({ translations, postId }) {
           type="text"
           name="content"
           id="content"
-          placeholder="Di algo!"
+          placeholder={translations.placeholder}
           ref={inputRef}
           className="bg-transparent border-2 border-[--col-black] rounded-md p-1 focus-visible:outline-none"
         />
